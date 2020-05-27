@@ -12,12 +12,13 @@ with open(election_data, 'r') as csvfile:
     total_votes = len(vote_list)
 
 
+#make a candidates list 
 candidates_list = [] 
-#candidates_list = [x for x in vote_list if x not in candidates_list] ---> why result is equal to vote_list?
 for x in vote_list:
     if x not in candidates_list:
         candidates_list.append(x)
 
+#calculate votes for each candidate, find percentages
 candidates_num_list = [] 
 candidates_percent_list = []
 candidates_num_list = [vote_list.count(item) for item in candidates_list] 
@@ -26,11 +27,12 @@ while z < len(candidates_num_list):
     candidates_percent_list.append(candidates_num_list[z]/total_votes)
     z = z + 1
  
+#assign winner
 winner_index = 0
 winner_index = candidates_num_list.index(max(candidates_num_list))
 winner = candidates_list[winner_index]
 
-
+#print results to terminal
 print("\nElection Results")
 print("--------------------------------")
 print(f"Total Votes:  {total_votes}")
@@ -43,6 +45,8 @@ print("--------------------------------")
 print(f"Winner: {winner}")
 print("--------------------------------")
 
+
+#output to txt file
 file_to_output = os.path.join("Analysis", "budget_analysis.txt")
 a = "\nElection Results"
 b = "--------------------------------"
